@@ -22,7 +22,21 @@ app.use(
 app.use(
   cors({
     origin(origin, cb) {
-      if (!origin || env.clientUrls.includes(origin)) return cb(null, true);
+      if (!origin || env.clientUrls.includes(origin)) {
+        return cb(null, true);
+      }
+
+      try {
+        const requestOrigin = new URL(origin);
+        const allowedHost = process.env.RENDER_EXTERNAL_HOSTNAME;
+
+        if (allowedHost && requestOrigin.host === allowedHost) {
+          return cb(null, true);
+        }
+      } catch (error) {
+        // Invalid origin
+      }
+
       return cb(new Error('Not allowed by CORS'));
     },
   })
