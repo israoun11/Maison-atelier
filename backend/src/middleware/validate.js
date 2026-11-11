@@ -1,0 +1,24 @@
+const mongoose = require('mongoose');
+
+const validate = (schema) => (req, res, next) => {
+  const result = schema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation failed',
+      errors: result.error.issues.map((i) => ({ field: i.path.join('.'), message: i.message })),
+    });
+  }
+  req.body = result.data;
+  return next();
+};
+
+// Use with router.param('id', validateObjectId)
+const validateObjectId = (req, res, next, id) => {
+  if (!mongoose.isValidObjectId(id)) {
+    return res.status(400).json({ success: false, message: 'Invalid id' });
+  }
+  return next();
+};
+
+module.exports = { validate, validateObjectId };

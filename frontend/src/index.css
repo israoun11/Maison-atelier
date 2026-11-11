@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ivory font-sans font-light text-charcoal antialiased; }
+  h1, h2, h3, h4 { @apply font-serif font-light text-brown; }
+  ::selection { background: #B6A898; color: #262421; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1440px] px-6 md:px-12; }
+  .eyebrow { @apply text-[11px] font-normal uppercase tracking-widest2 text-taupe; }
+  .btn { @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[11px] font-normal uppercase tracking-widest2 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-dark { @apply bg-brown text-ivory hover:bg-charcoal; }
+  .btn-light { @apply bg-ivory text-brown hover:bg-sand; }
+  .btn-line { @apply border border-brown/40 text-brown hover:bg-brown hover:text-ivory; }
+  .link-line { @apply inline-flex items-center gap-3 border-b border-current pb-1 text-[11px] uppercase tracking-widest2 transition-opacity hover:opacity-60; }
+  .field { @apply w-full border border-taupe/60 bg-white px-4 py-3 text-sm text-charcoal outline-none transition-colors focus:border-brown; }
+  .field[aria-invalid='true'] { @apply border-red-700/70; }
+  .label { @apply mb-2 block text-[11px] uppercase tracking-widest2 text-brown; }
+  .card { @apply border border-sand bg-white p-6; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .img-zoom img { transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1); }
+  .img-zoom:hover img { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .img-zoom img { transition: none; }
+  .img-zoom:hover img { transform: none; }
+}
