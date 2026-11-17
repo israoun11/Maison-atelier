@@ -13,7 +13,7 @@ export default function SmartImage({ src, alt, className = '', eager = false }: 
   if (failed) {
     return (
       <div className={`flex items-center justify-center bg-sand text-[11px] uppercase tracking-widest2 text-taupe ${className}`} role="img" aria-label={alt}>
-        Atelier Maison
+        Maison Karima
       </div>
     );
   }

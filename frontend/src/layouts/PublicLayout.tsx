@@ -18,6 +18,7 @@ export default function PublicLayout() {
       >
         Skip to content
       </a>
+
       <Navbar />
       <main id="main">
         <Outlet />

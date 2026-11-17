@@ -121,7 +121,7 @@ export default function AdminProjects() {
                 <tr key={p._id} className="border-b border-sand">
                   <td className="p-3 font-normal">{p.title}</td><td className="p-3">{p.category}</td><td className="p-3">{p.location}</td>
                   <td className="p-3">
-                    <button type="button" onClick={() => toggleFeatured(p)} aria-pressed={p.featured} className={`border px-3 py-1 text-xs ${p.featured ? 'border-brown bg-brown text-ivory' : 'border-taupe text-brown'}`}>
+                    <button type="button" onClick={() => toggleFeatured(p)} aria-pressed={p.featured} className={`border px-3 py-1 text-xs ${p.featured ? 'border-olive-dark bg-olive-dark text-ivory' : 'border-taupe text-brown'}`}>
                       {p.featured ? 'Featured' : 'Not featured'}
                     </button>
                   </td>

@@ -20,10 +20,10 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-sand/50 md:flex">
-      <aside className="border-b border-sand bg-ivory md:sticky md:top-0 md:h-screen md:w-60 md:shrink-0 md:border-b-0 md:border-r">
+    <div className="min-h-screen bg-sand/60 md:flex">
+      <aside className="border-b border-sand bg-paper md:sticky md:top-0 md:h-screen md:w-60 md:shrink-0 md:border-b-0 md:border-r">
         <div className="flex items-center justify-between px-6 py-5 md:block">
-          <p className="font-serif text-lg uppercase tracking-[0.24em] text-brown">Atelier Maison</p>
+          <p className="font-serif text-2xl text-brown">Maison Karima</p>
           <p className="eyebrow md:mt-1">Admin</p>
         </div>
         <nav aria-label="Admin" className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:pb-0">
@@ -37,9 +37,9 @@ export default function AdminLayout() {
       </aside>
 
       <div className="min-w-0 flex-1">
-        <div className="flex items-center justify-between bg-brown px-6 py-4 text-ivory md:px-10">
+        <div className="flex items-center justify-between bg-olive-dark px-6 py-4 text-ivory md:px-10">
           <p className="text-sm">Welcome, {admin?.name}</p>
-          <button type="button" onClick={onLogout} className="rounded-sm bg-taupe px-4 py-2 text-[11px] uppercase tracking-widest2 text-charcoal transition-opacity hover:opacity-80">
+          <button type="button" onClick={onLogout} className="rounded-sm bg-ivory px-4 py-2 text-[11px] uppercase tracking-widest2 text-charcoal transition-opacity hover:opacity-80">
             Log out
           </button>
         </div>

@@ -32,9 +32,9 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-sand/60 px-6">
-      <form onSubmit={onSubmit} className="w-full max-w-md border border-sand bg-ivory p-8 md:p-10" aria-label="Admin login">
-        <p className="font-serif text-2xl uppercase tracking-[0.24em] text-brown">Atelier Maison</p>
+    <div className="flex min-h-screen items-center justify-center bg-ivory px-6">
+      <form onSubmit={onSubmit} className="w-full max-w-md rounded-md border border-sand bg-paper p-8 md:p-10" aria-label="Admin login">
+        <p className="font-serif text-3xl text-brown">Maison Karima</p>
         <p className="eyebrow mt-1">Admin login</p>
         <div className="mt-8 space-y-6">
           <div>

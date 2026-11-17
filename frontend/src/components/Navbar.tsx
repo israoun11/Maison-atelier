@@ -10,7 +10,6 @@ const links = [
 
 export default function Navbar() {
   const { pathname } = useLocation();
-  const overlay = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,14 +21,11 @@ export default function Navbar() {
   }, []);
   useEffect(() => setOpen(false), [pathname]);
 
-  const solid = scrolled || !overlay || open;
-  const tone = solid ? 'text-brown' : 'text-ivory';
-
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${solid ? 'border-b border-sand bg-ivory/95 backdrop-blur' : 'bg-transparent'}`}>
-      <div className={`container-x flex h-20 items-center justify-between ${tone}`}>
-        <Link to="/" className="font-serif text-xl uppercase tracking-[0.28em]" aria-label="Atelier Maison, home">
-          Atelier Maison
+    <header className={`fixed inset-x-0 top-0 z-50 text-ivory transition-colors duration-500 ${scrolled || open ? 'bg-charcoal/95 backdrop-blur' : 'bg-transparent'}`}>
+      <div className="container-x flex h-20 items-center justify-between">
+        <Link to="/" className="font-serif text-2xl tracking-wide" aria-label="Maison Karima, home">
+          Maison Karima
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-10 md:flex">
           {links.map((l) => (
@@ -44,13 +40,14 @@ export default function Navbar() {
         </button>
       </div>
       {open && (
-        <nav id="mobile-menu" aria-label="Mobile" className="border-t border-sand bg-ivory md:hidden">
+        <nav id="mobile-menu" aria-label="Mobile" className="border-t border-white/10 bg-charcoal md:hidden">
           <ul className="container-x flex flex-col py-4">
             {links.map((l) => (
               <li key={l.to}>
-                <NavLink to={l.to} className="block border-b border-sand py-4 font-serif text-3xl text-brown">{l.label}</NavLink>
+                <NavLink to={l.to} className="block border-b border-white/10 py-4 font-serif text-3xl">{l.label}</NavLink>
               </li>
             ))}
+            <li className="py-6"><Link to="/contact" className="btn btn-ghost w-full">Book a consultation <span aria-hidden>→</span></Link></li>
           </ul>
         </nav>
       )}

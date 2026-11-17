@@ -23,7 +23,7 @@ export default function AdminDashboard() {
       {stats.error && <ErrorState message={stats.error} onRetry={stats.reload} />}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {cards.map((c) => (
-          <div key={c.label} className={`p-6 ${c.dark ? 'bg-taupe text-charcoal' : 'border border-sand bg-white'}`}>
+          <div key={c.label} className={`p-6 ${c.dark ? 'bg-olive text-ivory' : 'rounded-md border border-sand bg-paper'}`}>
             <p className="text-xs uppercase tracking-widest2 opacity-70">{c.label}</p>
             <p className="mt-3 font-serif text-5xl">{c.value}</p>
           </div>

@@ -3,6 +3,7 @@ import { errorMessage, submitContact } from '../services/api';
 import { usePageTitle } from '../hooks/usePageTitle';
 import type { ContactPayload } from '../types';
 import Reveal from '../components/Reveal';
+import PageHeader from '../components/PageHeader';
 
 type Errors = Partial<Record<keyof ContactPayload, string>>;
 const empty: ContactPayload = { name: '', email: '', subject: '', message: '' };
@@ -17,7 +18,7 @@ function validate(v: ContactPayload): Errors {
 }
 
 export default function Contact() {
-  usePageTitle('Contact', 'Get in touch with Atelier Maison to discuss your interior architecture or design project.');
+  usePageTitle('Contact', 'Get in touch with Maison Karima to discuss your interior architecture or design project.');
   const [values, setValues] = useState<ContactPayload>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -57,22 +58,20 @@ export default function Contact() {
   );
 
   return (
-    <div className="container-x pb-24 pt-36 md:pb-32 md:pt-44">
-      <div className="grid gap-16 md:grid-cols-12">
-        <Reveal className="md:col-span-5">
-          <p className="eyebrow">Contact</p>
-          <h1 className="mt-4 text-5xl leading-tight md:text-7xl">Let us talk.</h1>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-brown/80">
-            Tell us about your space, your timeline and what you imagine. We reply to every enquiry within two working days.
-          </p>
-          <address className="mt-10 space-y-2 text-sm not-italic text-brown">
+    <>
+      <PageHeader eyebrow="Contact" title="Let us talk.">Tell us about your space, your timeline and what you imagine. We reply to every enquiry within two working days.</PageHeader>
+      <div className="container-x grid gap-16 py-20 md:grid-cols-12 md:py-28">
+        <Reveal className="md:col-span-4">
+          <p className="eyebrow">Studio</p>
+          <address className="mt-4 space-y-2 text-sm not-italic text-brown">
             <p>12 Rue des Archives, 75003 Paris</p>
-            <p><a href="mailto:hello@ateliermaison.example" className="underline underline-offset-4">hello@ateliermaison.example</a></p>
+            <p><a href="mailto:hello@maisonkarima.example" className="underline underline-offset-4">hello@maisonkarima.example</a></p>
           </address>
+          <p className="mt-8 max-w-xs text-sm leading-relaxed text-brown/70">A first conversation is always free. We will listen, assess your space and outline the next steps.</p>
         </Reveal>
 
-        <Reveal className="md:col-span-6 md:col-start-7" delay={120}>
-          <form onSubmit={onSubmit} noValidate className="space-y-7" aria-label="Contact form">
+        <Reveal className="md:col-span-7 md:col-start-6" delay={120}>
+          <form onSubmit={onSubmit} noValidate className="card space-y-7 !p-8 md:!p-10" aria-label="Contact form">
             {field('name', 'Name', 'text', 'name')}
             {field('email', 'Email', 'email', 'email')}
             {field('subject', 'Subject')}
@@ -83,15 +82,15 @@ export default function Contact() {
               {errors.message && <p id="message-err" className="mt-2 text-xs text-red-800">{errors.message}</p>}
             </div>
             <button type="submit" className="btn btn-dark" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Send message'}
+              {status === 'sending' ? 'Sending…' : <>Send message <span aria-hidden>→</span></>}
             </button>
             <div aria-live="polite">
-              {status === 'success' && <p role="status" className="border border-taupe bg-sand px-4 py-3 text-sm text-brown">{feedback}</p>}
-              {status === 'error' && <p role="alert" className="border border-red-800/40 bg-white px-4 py-3 text-sm text-red-900">{feedback}</p>}
+              {status === 'success' && <p role="status" className="rounded-sm border border-olive/40 bg-sand px-4 py-3 text-sm text-brown">{feedback}</p>}
+              {status === 'error' && <p role="alert" className="rounded-sm border border-red-800/40 bg-white px-4 py-3 text-sm text-red-900">{feedback}</p>}
             </div>
           </form>
         </Reveal>
       </div>
-    </div>
+    </>
   );
 }
